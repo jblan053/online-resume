@@ -1,33 +1,3 @@
-//-------------------- Practicing -------------------------------------
-// $("#main").append("Jonathan Blanco");		
-
-// var firstName = "Jon";
-// var age = 34;
-
-// console.log(age);
-
-// var awesomeThoughts = "I am Jon and I am AWESOME!";
-// console.log(awesomeThoughts);
-
-// var funThoughts = awesomeThoughts.replace("AWESOME", "FUN");
-// $("#main").append(funThoughts);
-
-/* DOT notation example: Adding properties to an object */
-// var work = {};
-// work.job = "Student";
-// work.employer = "FIU";
-// work.yearsWorked = "2014-2016";
-// work.city = "Miami";
-
-/* BRACKET notation example: Adding properties to an object */
-// var education1 = {};
-// education1["name"] = "FIU";
-// education1["yearsAttended"] = "2014-2017";
-// education1["city"] = "Miami";
-
-// $("#main").append(work.job);
-// $("#main").append(education1["name"]);
-//-------------------------------------------------------------------------
 
 var skill = ["Programmer", "HTML5", "JavaScript", "CSS3", "Leadership", "Web Design", "Web Development", "Web Applications", "jQuery", "Bootstrap", "SQL", "Java", "Github", "Management", "Team Building", "Research"];
 /* Object creation example */
@@ -37,7 +7,8 @@ var bio = {
 	"contacts" : {
 		"email": "jblan053@fiu.edu",
 		"mobile": "111-111-1111",
-		"github" : "jblan053",
+		"github" : "https://github.com/jblan053",
+		"linkedin" : "https://www.linkedin.com/in/jonathan-blanco",
 		"location": "Miami, FL"
 	},
 	"biopic" : "images/me.jpg",
@@ -88,19 +59,19 @@ var projects = {
 			"title" : "Web Interface",
 			"dates" : "May 2015",
 			"description" : "• Designed front-end for the retrieval of information from a personally created database. • Employed SQL, JavaScript, and HTML achieving a fresh design to interact with tables",		
-			"images" : ["image_1"]
+			"images" : []
 		},
 		{
 			"title" : "Restaurant Menu",
 			"dates" : "December 2014",
 			"description" : "• Created GUI tool to simulate a restaurant registration system. • Programmed in Java with the Swing GUI Builder.",
-			"images" : ["image_1"]
+			"images" : ["images/restaurant_menu.JPG"]
 		},
 		{
 			"title" : "Bagels and Sudoku",
 			"dates" : "August 2014",
 			"description" : "• Designed logic-based games learning complex algorithms. • Coded in Java implementing friendly interface with well formatted program output.",
-			"images" : ["image_1"]
+			"images" : ["images/sudoku_3x3.JPG", "images/sudoku_9x9.JPG", "images/bagels.JPG"]
 		}]
 };
 
@@ -125,11 +96,18 @@ bio.display = function() {
 
 	//Show my contacts
 	var formattedEmail = HTMLemail.replace(data, bio.contacts.email);
-	var formattedGithub = HTMLgithub.replace(data, bio.contacts.github);
+	$("#header, #footerContacts").append(formattedEmail);
+
+	var formattedGithub = HTMLgithub.replace("#", bio.contacts.github);
+ 	formattedGithub = formattedGithub.replace(data, "JB on GitHub!");
+	$("#header, #footerContacts").append(formattedGithub);
+
+	var formattedLinkedin = HTMLlinkedin.replace("#", bio.contacts.linkedin);
+	formattedLinkedin = formattedLinkedin.replace(data, "JB on LinkedIn!");
+	$("#header, #footerContacts").append(formattedLinkedin);
+
 	var formattedLocation = HTMLlocation.replace(data, bio.contacts.location);
-	$("#footerContacts").append(formattedEmail);
-	$("#footerContacts").append(formattedGithub);
-	$("#footerContacts").append(formattedLocation);
+	$("#header, #footerContacts").append(formattedLocation);
 
 	//Shows my skills
 	if (bio.skills.length > 0) {
@@ -179,7 +157,7 @@ work.display();
 //Shows my projects ****MISSING pictures and links***
 projects.display = function() {
 
-	projects.projects.forEach(function(project) {
+	projects.projects.forEach(function(project, projIndex) {
 		$("#projects").append(HTMLprojectStart);
 
 		var temp = HTMLprojectTitle.replace(data, project.title);
@@ -191,8 +169,11 @@ projects.display = function() {
 		temp = HTMLprojectDescription.replace(data, project.description);
 		$(".project-entry:last").append(temp);
 
-		temp = HTMLprojectImage.replace(data, project.images);
-		$(".project-entry:last").append(temp);
+		project.images.forEach(function(image, index) {
+			temp = HTMLprojectImage.replace("%image%", "project"+projIndex+"-image"+index);
+			temp = temp.replace(data, image);
+			$(".project-entry:last").append(temp);
+		});
 	});
 };
 
