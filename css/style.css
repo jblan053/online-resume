@@ -11,7 +11,7 @@ h5,
 h6 {
   padding:0;
   margin:0;
-  font-family: "Roboto", sans-serif;
+  font-family: cursive, sans-serif;
 }
 
 .clear-fix {
@@ -63,6 +63,7 @@ h5 {
 
 .role {
     font-weight: bolder;
+    color: linen;
 }
 
 .date-text {
@@ -107,8 +108,8 @@ a {
   display: none;
 }
 
-.orange {
-  background-color: #f5ae23;
+.blue {
+  background-color: #679ec9;
 }
 
 .orange-text {
@@ -116,10 +117,15 @@ a {
 }
 
 .white-text {
-  font-weight: bold;
   color: #fff;
   padding-right: 23px;
   line-height: 26px;
+}
+
+.linkedin,
+.github {
+  display: inline;
+  padding-right: 0;
 }
 
 .gray {
@@ -134,7 +140,7 @@ a {
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: #679ec9;
 }
 
 .flex-box {
@@ -159,10 +165,37 @@ ul {
   padding: 10px;
   width: 200px;
   display: none;
+  border-style: outset;
 }
 
 img {
   padding: 10px;
+  margin-right: 11px;
+  /* width: 39%; */
+  border-style: dashed;
+  border-color: lightsteelblue;
+  border-radius: 27px;
+}
+
+.project1-image0 {
+  width: 45%;
+}
+
+@media only screen and (max-width: 400px) {
+  .project1-image0 {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .project2-image0, 
+  .project2-image1 {
+    width: 30%;
+  }
+
+  .project2-image2 {
+    width: 70%;
+  }
 }
 
 span {
@@ -209,6 +242,12 @@ span {
   height: 400px;
   width: 100%;
   padding-bottom: 5%;
+}
+
+@media only screen and (max-width: 400px) {
+  #mapDiv {
+    padding-bottom: 15%;
+  }
 }
 
 @media only screen and (min-width: 750px) {
